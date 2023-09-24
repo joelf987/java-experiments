@@ -1,7 +1,8 @@
 package org.jf.datastructure;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -26,9 +27,7 @@ class StackTest {
 
   @Test
   public void shouldRejectNullValues() {
-    Exception e = assertThrows(IllegalArgumentException.class, () -> stringStack.push(null));
-
-    assertThat(e.getMessage(), equalTo("Non null argument expected - but was null"));
+    assertThat(stringStack.push(null), is(false));
   }
 
   @Test
@@ -73,6 +72,32 @@ class StackTest {
     Exception e = assertThrows(IllegalStateException.class, stringStack::pop);
 
     assertThat(e.getMessage(), is("Cannot pop value from empty stack"));
+  }
+
+  @Test
+  public void shouldAddItemsInLIFOOrder() {
+    String item1 = "item1";
+    String item2 = "item2";
+
+    assertThat(stringStack.top(), is(0));
+    assertThat(stringStack.isEmpty(), is(true));
+    stringStack.add(item1);
+    assertThat(stringStack.top(), equalTo(stringStack.size() - 1));
+    assertThat(stringStack.isEmpty(), is(false));
+    assertThat(stringStack.size(), is(1));
+
+    stringStack.add(item2);
+    assertThat(stringStack.top(), equalTo(stringStack.size() - 1));
+    assertThat(stringStack.isEmpty(), is(false));
+
+    assertThat(stringStack.top(), is(1));
+    assertThat(stringStack.pop(), is(item2));
+    assertThat(stringStack.top(), is(0));
+
+    assertThat(stringStack.pop(), is(item1));
+    assertThat(stringStack.top(), is(0));
+    assertThat(stringStack.isEmpty(), is(true));
+
   }
 
 

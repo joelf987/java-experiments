@@ -23,21 +23,28 @@ public class Stack<T> extends AbstractCollection<T> {
     return this.items.size();
   }
 
-  public void push(T item) {
-    if (Objects.isNull(item)) {
-      throw new IllegalArgumentException("Non null argument expected - but was null");
+  public boolean push(T item) {
+    if (Objects.nonNull(item)) {
+      top.getAndIncrement();
+      items.add(item);
+      return true;
     }
-    int currentTop = top.getAndIncrement();
-    items.add(item);
+    return false;
+  }
+
+  @Override
+  public boolean add(T t) {
+    return push(t);
   }
 
   public T pop() {
     if (isEmpty()) {
       throw new IllegalStateException("Cannot pop value from empty stack");
     }
-    return items.get(top.decrementAndGet());
+    return items.remove(top.decrementAndGet());
   }
 
+  @Override
   public boolean isEmpty() {
     return top.get() == 0;
   }
