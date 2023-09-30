@@ -68,6 +68,19 @@ class StackTest {
   }
 
   @Test
+  public void shouldFailToRemoveItemFromStack() {
+    String item1 = "item1";
+    String item2 = "item2";
+
+    stringStack.push(item1);
+    stringStack.push(item2);
+
+    Exception e = assertThrows(UnsupportedOperationException.class, () -> stringStack.remove(item1));
+
+    assertThat(e.getMessage(), is("Remove is not supported for Stack."));
+  }
+
+  @Test
   public void shouldAddItemsInLIFOOrder() {
     String item1 = "item1";
     String item2 = "item2";

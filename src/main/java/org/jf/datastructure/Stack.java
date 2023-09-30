@@ -50,6 +50,11 @@ public class Stack<T> extends AbstractCollection<T> {
   }
 
   @Override
+  public boolean remove(Object o) {
+    throw new UnsupportedOperationException("Remove is not supported for Stack.");
+  }
+
+  @Override
   public boolean isEmpty() {
     return top.get() == 0;
   }

@@ -44,4 +44,8 @@ public class Queue<T> extends AbstractCollection<T> {
     return items.remove(0);
   }
 
+  @Override
+  public boolean remove(Object o) {
+    throw new UnsupportedOperationException("Remove is not supported for Queue.");
+  }
 }

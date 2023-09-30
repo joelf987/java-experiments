@@ -61,10 +61,23 @@ class QueueTest {
   }
 
   @Test
-  public void shouldFailToDequeueIfStackIsEmpty() {
+  public void shouldFailToDequeueIfQueueIsEmpty() {
     Exception e = assertThrows(IllegalStateException.class, stringQ::dequeue);
 
     assertThat(e.getMessage(), is("Cannot pop value from empty stack"));
+  }
+
+  @Test
+  public void shouldFailToRemoveFromQueue() {
+    String item1 = "item1";
+    String item2 = "item2";
+
+    stringQ.enqueue(item1);
+    stringQ.enqueue(item2);
+
+    Exception e = assertThrows(UnsupportedOperationException.class, () -> stringQ.remove(item1));
+
+    assertThat(e.getMessage(), is("Remove is not supported for Queue."));
   }
 
   @Test
