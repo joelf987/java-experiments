@@ -1,6 +1,7 @@
 package org.jf.datastructure;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -56,15 +57,7 @@ class StackTest {
     stringStack.push(item1);
     stringStack.push(item2);
 
-    int loopIndex = 0;
-    for (String item: stringStack) {
-      if (loopIndex == 0) {
-        assertThat(item, equalTo(item2));
-      } else {
-        assertThat(item, equalTo(item1));
-      }
-      loopIndex++;
-    }
+    assertThat(stringStack, contains(item2, item1));
   }
 
   @Test
