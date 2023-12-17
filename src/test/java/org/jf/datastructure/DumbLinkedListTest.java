@@ -25,7 +25,7 @@ class DumbLinkedListTest {
   }
 
   @Test
-  public void shouldAInsertItemInbetweenTwoExistingItems() {
+  public void shouldInsertItemInbetweenTwoExistingItems() {
     ArrayLinkedList<String> arrayLinkedList = new ArrayLinkedList<>(10);
     arrayLinkedList.insert(new ArrayLinkedList.Node<>("abcd"));
     assertThat(arrayLinkedList.getSize(), is(1));

@@ -25,7 +25,7 @@ class LinkedListTest {
   }
 
   @Test
-  public void shouldAInsertItemInbetweenTwoExistingItems() {
+  public void shouldInsertItemInbetweenTwoExistingItems() {
     LinkedList<String> LinkedList = new LinkedList<>();
     LinkedList.insert(new LinkedList.Node<>("abcd"));
     assertThat(LinkedList.getSize(), is(1));

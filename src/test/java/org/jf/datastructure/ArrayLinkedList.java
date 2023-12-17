@@ -30,10 +30,11 @@ public class ArrayLinkedList<T> {
     if (index >= linkedList.length) {
       throw new ArrayIndexOutOfBoundsException("Index["+ index + "] greater than size: " + linkedList.length);
     }
-    Node<T> previousNode = index == 0? null : gotoTail();
+    Node<T> previousNode = index == 0? null : elementAt(index - 1);
     if (Objects.nonNull(previousNode)) {
       int previousNodeNextIndex = previousNode.nextNodeIndex;
-      previousNode.nextNodeIndex = index;
+      linkedList[size] = node;
+      previousNode.nextNodeIndex = size;
       node.nextNodeIndex = previousNodeNextIndex;
     } else { //we want to replace the first node... (at index-0)
       node.nextNodeIndex = firstIndex;
@@ -63,10 +64,16 @@ public class ArrayLinkedList<T> {
     if (index >= linkedList.length) {
       throw new ArrayIndexOutOfBoundsException("Index["+ index + "] greater than size: " + linkedList.length);
     }
-    for (Node node: linkedList) {
-      if (node.nextNodeIndex == index) {
-        return linkedList[node.nextNodeIndex];
+    if (index == 0) {
+      return linkedList[firstIndex];
+    }
+    int currentIndex = firstIndex;
+    for(int position = 0; position < size; position++) {
+      Node<T> node = linkedList[currentIndex];
+      if (position == index) {
+        return linkedList[currentIndex];
       }
+      currentIndex = node.nextNodeIndex;
     }
     return this.linkedList[index];
   }
