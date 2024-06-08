@@ -10,60 +10,60 @@ class LinkedListTest {
 
   @Test
   public void shouldBeAbleToInsertIntoEmptyLinkedList() {
-    LinkedList<String> LinkedList = new LinkedList<>();
-    LinkedList.insert(new LinkedList.Node<>("abcd"));
-    assertThat(LinkedList.getSize(), is(1));
+    LinkedList<String> linkedList = new LinkedList<>();
+    linkedList.insert(new LinkedList.Node<>("abcd"));
+    assertThat(linkedList.getSize(), is(1));
   }
 
   @Test
   public void shouldAddAnotherItem() {
-    LinkedList<String> LinkedList = new LinkedList<>();
-    LinkedList.insert(new LinkedList.Node<>("abcd"));
-    assertThat(LinkedList.getSize(), is(1));
-    LinkedList.insert(new LinkedList.Node<>("efgh"));
-    assertThat(LinkedList.getSize(), is(2));
+    LinkedList<String> linkedList = new LinkedList<>();
+    linkedList.insert(new LinkedList.Node<>("abcd"));
+    assertThat(linkedList.getSize(), is(1));
+    linkedList.insert(new LinkedList.Node<>("efgh"));
+    assertThat(linkedList.getSize(), is(2));
   }
 
   @Test
   public void shouldInsertItemInbetweenTwoExistingItems() {
-    LinkedList<String> LinkedList = new LinkedList<>();
-    LinkedList.insert(new LinkedList.Node<>("abcd"));
-    assertThat(LinkedList.getSize(), is(1));
-    LinkedList.insert(new LinkedList.Node<>("efgh"));
-    assertThat(LinkedList.getSize(), is(2));
-    LinkedList.insertAt(new LinkedList.Node<>("ijkl"), 1);
-    assertThat(LinkedList.getSize(), is(3));
-    assertThat(LinkedList.elementAt(0).getData(), is(equalTo("abcd")));
-    assertThat(LinkedList.elementAt(1).getData(), is(equalTo("ijkl")));
-    assertThat(LinkedList.elementAt(2).getData(), is(equalTo("efgh")));
+    LinkedList<String> linkedList = new LinkedList<>();
+    linkedList.insert(new LinkedList.Node<>("abcd"));
+    assertThat(linkedList.getSize(), is(1));
+    linkedList.insert(new LinkedList.Node<>("efgh"));
+    assertThat(linkedList.getSize(), is(2));
+    linkedList.insertAt(new LinkedList.Node<>("ijkl"), 1);
+    assertThat(linkedList.getSize(), is(3));
+    assertThat(linkedList.elementAt(0).getData(), is(equalTo("abcd")));
+    assertThat(linkedList.elementAt(1).getData(), is(equalTo("ijkl")));
+    assertThat(linkedList.elementAt(2).getData(), is(equalTo("efgh")));
   }
 
   @Test
   public void shouldInsertAtEnd() {
-    LinkedList<String> LinkedList = new LinkedList<>();
-    LinkedList.insert(new LinkedList.Node<>("abcd"));
-    assertThat(LinkedList.getSize(), is(1));
-    LinkedList.insert(new LinkedList.Node<>("efgh"));
-    assertThat(LinkedList.getSize(), is(2));
-    LinkedList.insertAt(new LinkedList.Node<>("ijkl"), 2);
-    assertThat(LinkedList.getSize(), is(3));
-    assertThat(LinkedList.elementAt(0).getData(), is(equalTo("abcd")));
-    assertThat(LinkedList.elementAt(1).getData(), is(equalTo("efgh")));
-    assertThat(LinkedList.elementAt(2).getData(), is(equalTo("ijkl")));
+    LinkedList<String> linkedList = new LinkedList<>();
+    linkedList.insert(new LinkedList.Node<>("abcd"));
+    assertThat(linkedList.getSize(), is(1));
+    linkedList.insert(new LinkedList.Node<>("efgh"));
+    assertThat(linkedList.getSize(), is(2));
+    linkedList.insertAt(new LinkedList.Node<>("ijkl"), 2);
+    assertThat(linkedList.getSize(), is(3));
+    assertThat(linkedList.elementAt(0).getData(), is(equalTo("abcd")));
+    assertThat(linkedList.elementAt(1).getData(), is(equalTo("efgh")));
+    assertThat(linkedList.elementAt(2).getData(), is(equalTo("ijkl")));
   }
 
   @Test
   public void shouldInsertAtBeginning() {
-    LinkedList<String> LinkedList = new LinkedList<>();
-    LinkedList.insert(new LinkedList.Node<>("abcd"));
-    assertThat(LinkedList.getSize(), is(1));
-    LinkedList.insert(new LinkedList.Node<>("efgh"));
-    assertThat(LinkedList.getSize(), is(2));
-    LinkedList.insertAt(new LinkedList.Node<>("ijkl"), 0);
-    assertThat(LinkedList.getSize(), is(3));
-    assertThat(LinkedList.elementAt(0).getData(), is(equalTo("ijkl")));
-    assertThat(LinkedList.elementAt(1).getData(), is(equalTo("abcd")));
-    assertThat(LinkedList.elementAt(2).getData(), is(equalTo("efgh")));
+    LinkedList<String> linkedList = new LinkedList<>();
+    linkedList.insert(new LinkedList.Node<>("abcd"));
+    assertThat(linkedList.getSize(), is(1));
+    linkedList.insert(new LinkedList.Node<>("efgh"));
+    assertThat(linkedList.getSize(), is(2));
+    linkedList.insertAt(new LinkedList.Node<>("ijkl"), 0);
+    assertThat(linkedList.getSize(), is(3));
+    assertThat(linkedList.elementAt(0).getData(), is(equalTo("ijkl")));
+    assertThat(linkedList.elementAt(1).getData(), is(equalTo("abcd")));
+    assertThat(linkedList.elementAt(2).getData(), is(equalTo("efgh")));
   }
 
 }
