@@ -1,8 +1,13 @@
 package org.jf.datastructure;
 
-import java.util.Objects;
+import java.util.AbstractList;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class LinkedList<T> {
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+
+public class LinkedList<T> extends AbstractList<T> {
   private Node<T> first;
   private int size;
 
@@ -10,37 +15,39 @@ public class LinkedList<T> {
     return size;
   }
 
-  public void insert(Node<T> node) {
+  public void insert(T data) {
     Node<T> tail = goToTail();
-    if (Objects.isNull(tail)) {
-      first = node;
+    Node<T> newNode = new Node<>(data);
+    if (isNull(tail)) {
+      first = newNode;
       size++;
       return;
     }
-    tail.next = node;
-    if (Objects.nonNull(node.next)) {
+    tail.next = newNode;
+    if (nonNull(newNode.next)) {
       throw new IllegalStateException("New node should not be connected!");
     }
     size++;
   }
 
   private Node<T> goToTail() {
-    if (first == null) {
+    if (isNull(first)) {
       return null;
     }
     Node<T> currentNode = first;
-    while (Objects.nonNull(currentNode.next)) {
+    while (nonNull(currentNode.next)) {
       currentNode = currentNode.next;
     }
     return currentNode;
   }
 
-  public void insertAt(Node<T> node, int index) {
+  public void insertAt(T data, int index) {
+      Node<T> newNode = new Node<>(data);
     if (index > size) {
       throw new IndexOutOfBoundsException("Index[" + index + "] >= size[" + size + "]");
     }
     if (index == size) {
-      insert(node);
+      insert(data);
       return;
     }
     Node<T> currentNode = first;
@@ -50,19 +57,19 @@ public class LinkedList<T> {
     }
 
     if(index == 0) {
-      node.next = first;
-      first = node;
+      newNode.next = first;
+      first = newNode;
       size ++;
     }
     if (currentIndex == index - 1) {
       Node<T> temp = currentNode.next;
-      currentNode.next = node;
-      node.next = temp;
+      currentNode.next = newNode;
+      newNode.next = temp;
       size++;
     }
   }
 
-  public Node<T> elementAt(int index) {
+  public T elementAt(int index) {
     if (index >= size) {
       throw new IndexOutOfBoundsException("Index[" + index + "] >= size[" + size + "]");
     }
@@ -71,30 +78,63 @@ public class LinkedList<T> {
     for(; currentIndex < index; currentIndex++) {
       currentNode = currentNode.next;
     }
-    return currentNode;
+    return currentNode.getData();
   }
 
-
-  public static class Node<T> {
-    final private T data;
-    private Node<T> next;
-
-    public Node(T data) {
-      this.data = data;
-      this.next = null;
+    @Override
+    public T get(int i) {
+        return elementAt(i);
     }
 
-    public Node(T data, Node<T> next) {
-      this.data = data;
-      this.next = next;
+    @Override
+    public Iterator<T> iterator() {
+        return new NodeIterator();
     }
 
-    public T getData() {
-      return data;
+    @Override
+    public int size() {
+        return size;
     }
 
-    public Node<T> getNext() {
-      return next;
+
+    private class NodeIterator implements Iterator<T> {
+        private Node<T> currentNode = first;
+        @Override
+        public boolean hasNext() {
+            return nonNull(currentNode);
+        }
+
+        @Override
+        public T next() {
+            if(hasNext()) {
+                Node<T> thisNode = currentNode;
+                currentNode = currentNode.next;
+                return thisNode.getData();
+            }
+            throw new NoSuchElementException();
+        }
     }
-  }
+
+    private static class Node<T> {
+        final private T data;
+        private Node<T> next;
+
+        private Node(T data) {
+            this.data = data;
+            this.next = null;
+        }
+
+        private Node(T data, Node<T> next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public T getData() {
+            return data;
+        }
+
+        public Node<T> getNext() {
+            return next;
+        }
+    }
 }

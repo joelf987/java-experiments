@@ -1,6 +1,7 @@
 package org.jf.tosh;
 
 import groovy.lang.Binding;
+import groovy.lang.GroovyRuntimeException;
 import groovy.lang.GroovyShell;
 
 import java.io.BufferedReader;
@@ -18,21 +19,29 @@ public class ToyShell {
         System.out.println("Welcome to Toy Shell");
         System.out.println("'Q' to quit");
         Binding sharedData = new Binding();
+        sharedData.setVariable("workingDir", System.getProperty("user.dir"));
 
         String script = new BufferedReader(new InputStreamReader(ToyShell.class.getResourceAsStream(SCRIPT_FILE)))
                 .lines()
                 .collect(Collectors.joining("\n"));
 
 
+
+
         GroovyShell shell = new GroovyShell(sharedData);
-        shell.evaluate(script);
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(">");
-        String line = "";
-        for(; !line.trim().equals("Q");) {
-            line = scanner.nextLine();
-            System.out.println(shell.evaluate(line));
+        try {
+            shell.evaluate(script);
+            Scanner scanner = new Scanner(System.in);
             System.out.println(">");
+            String line = "";
+            while (!line.trim().equals("Q")) {
+                line = scanner.nextLine();
+                System.out.println(shell.evaluate(line));
+                System.out.println(">");
+            }
+        } catch (GroovyRuntimeException gre) {
+            gre.printStackTrace();
         }
+
     }
 }

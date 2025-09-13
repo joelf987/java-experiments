@@ -13,7 +13,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <commons.cli.version>1.10.0</commons.cli.version>
-        <groovy.version>5.0.0</groovy.version>
+        <junit-jupiter.version>5.13.4</junit-jupiter.version>
     </properties>
 
     <dependencies>
@@ -26,13 +26,12 @@
         <dependency>
             <groupId>org.apache.groovy</groupId>
             <artifactId>groovy-all</artifactId>
-            <version>${groovy.version}</version>
+            <version>5.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.0</version>
-            <scope>test</scope>
+            <version>${junit-jupiter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -50,7 +49,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.jf.tosh.cmd.Factorial</mainClass>
+                            <mainClass>org.jf.tosh.ToyShell</mainClass>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                         </manifest>
