@@ -15,9 +15,6 @@ public class WordCounter {
                 writer.write(wordCountEntry.getKey() + "," + wordCountEntry.getValue() + "\n");
             }
         }
-
-
-
     }
 
     public Map<String, Integer> countWords(String fileName) throws IOException {
@@ -39,7 +36,5 @@ public class WordCounter {
             }
             return wordCount;
         }
-
-
     }
 }
