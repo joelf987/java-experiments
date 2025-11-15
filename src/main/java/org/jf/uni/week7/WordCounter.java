@@ -10,7 +10,7 @@ public class WordCounter {
     public static void main(String[] args) throws IOException, URISyntaxException {
         Map<String, Integer> wordCountsMap = new WordCounter().countWords("/data.txt");
         File out = new File(WordCounter.class.getResource("/").getFile() , "wordcount.csv");
-        try(Writer writer = new FileWriter(out)){
+        try(Writer writer = new BufferedWriter(new FileWriter(out))){
             for (Map.Entry<String, Integer> wordCountEntry: wordCountsMap.entrySet()){
                 writer.write(wordCountEntry.getKey() + "," + wordCountEntry.getValue() + "\n");
             }
