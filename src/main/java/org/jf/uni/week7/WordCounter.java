@@ -20,7 +20,7 @@ public class WordCounter {
 
     }
 
-    public Map<String, Integer> countWords(String fileName) throws IOException, URISyntaxException {
+    public Map<String, Integer> countWords(String fileName) throws IOException {
         try(InputStream fileInput = getClass().getResourceAsStream(fileName)){
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInput));
             Map<String, Integer> wordCount = new TreeMap<>();
