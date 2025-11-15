@@ -11,7 +11,7 @@ public class StudentIn {
 
             String s = reader.readLine();
             while (s != null){
-                String[] array = new String[3];
+                String[] array;
                 array = s.split(",");
                 for (int i = 0; i <3; i ++){
                     System.out.println(array[i]);
