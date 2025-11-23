@@ -21,7 +21,7 @@ public class Poem {
 
     @Override
     public String toString() {
-        return "Poem{" +
+        return getClass().getSimpleName() + "{" +
                 "name='" + name + '\'' +
                 ", lines=" + lines +
                 '}';
