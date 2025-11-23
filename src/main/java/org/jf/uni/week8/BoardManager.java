@@ -14,7 +14,7 @@ public class BoardManager implements Subscriber{
     }
 
     public void delete(){
-        board.setNews("no news");
+        board.deleteLast();
     }
 
     public void remove(Subscriber s){

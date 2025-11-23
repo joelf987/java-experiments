@@ -19,10 +19,12 @@ public class Forum {
         board.add(manager);
 
 
-        u1.post("Pride and Prejudice just published!");
+        u1.post("books", "Pride and Prejudice just published!");
         System.out.println(board.getNews());
+        u1.post("books", "stsdyukd");
 
-        admin.delete();
+
+        admin.deleteByUser(u1);
         System.out.println(board.getNews());
         admin.remove(u2);
         u3.post("Nearly finished writing Middlemarch");

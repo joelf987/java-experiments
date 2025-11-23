@@ -6,7 +6,11 @@ public class Moderator extends User{
     }
 
     public void delete(){
-        board.setNews("no news");
+        board.deleteLast();
+    }
+
+    public void deleteByUser(User user){
+        board.deleteByUser(user);
     }
 
     public void remove(Subscriber s){
